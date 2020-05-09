@@ -1,0 +1,10 @@
+.nav-list {
+    &__item {
+        display: block;
+        text-decoration: none;
+        color: cornsilk;
+        &_active {
+            color: chartreuse;
+        }
+    }
+}
