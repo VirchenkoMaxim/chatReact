@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Post from './Post/Post'
 import './MyPosts.scss'
 import { addPostActionCreator, changeNewPostActionCreator } from '../../../redux/profile-reducer'
 import MyPosts from './MyPosts';

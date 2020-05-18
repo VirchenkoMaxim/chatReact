@@ -5,9 +5,12 @@ import './App.css';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav';
-import Profile from './components/Profile/Profile';
+
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
+import UsersContainer from './components/Users/UsersContainer';
+import ProfileContainer from './components/Profile/ProfileContainer';
+import HeaderContainer from './components/Header/HeaderContainer';
 
 
 class App extends Component {
@@ -15,17 +18,13 @@ class App extends Component {
     return (
       <div className="app">
         <Router>
-          <Header />
+          <HeaderContainer />
           <Nav />
           <div className="main">
             <Switch >
-              <Route exact path='/dialogs' render={() => <DialogsContainer
-                store={this.props.store}
-              />} />
-              <Route exact path='/profile' render={() => <Profile
-                store={this.props.store}
-              />}
-              />
+              <Route path='/dialogs' render={() => <DialogsContainer />} />
+              <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
+              <Route path='/users' render={() => <UsersContainer />} />
             </Switch>
           </div>
           <Footer />
