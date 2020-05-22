@@ -3,6 +3,7 @@ import './Dialogs.scss'
 
 import Message from './Message/Message'
 import DialogsItem from './DialogsItem/DialogsItem'
+import { Redirect } from 'react-router'
 
 export class Dialogs extends Component {
     render() {
@@ -14,7 +15,6 @@ export class Dialogs extends Component {
             let text = e.target.value
             this.props.changeNewMessage(text)
         }
-
         return (
             <div className="dialogs">
                 <DialogsItem dialogs={this.props.dialogsPage.dialogs} />

@@ -10,9 +10,7 @@ export class Header extends Component {
                     {this.props.isAuth ?
                         this.props.login
                         : <NavLink to="/login">Login</NavLink>
-
                     }
-
                 </div>
             </div>
         )

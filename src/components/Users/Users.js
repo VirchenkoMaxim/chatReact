@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import './Users.scss'
 import userPhoto from '../../assets/img/user.png'
-import { NavLink } from 'react-router-dom';
-import * as Axios from 'axios';
+import { NavLink, useRouteMatch } from 'react-router-dom';
+import * as axios from 'axios';
+import { usersAPI } from '../../api/api';
+
 
 class Users extends Component {
 
@@ -16,8 +18,7 @@ class Users extends Component {
             <div>
                 <div>
                     {pages.map(item => {
-                        return (<span onClick={() => this.props.onPageChanged(item)} className={this.props.curentPage === item && "page-count"}>{item}</span>)
-
+                        return (<span onClick={() => this.props.onPageChanged(item)} className={this.props.curentPage == item && "page-count"}>{item}</span>)
                     })}
                 </div>
                 {
@@ -29,32 +30,10 @@ class Users extends Component {
                                 } alt="" />
                             </NavLink>
                             {item.followed
-                                ? <button onClick={() => {
-                                    Axios.post(`https://social-network.samuraijs.com/api/1.0/users/follow/${item.id}`, {
-                                        withCredentials: true,
-                                        headers: {
-                                            "API-KEY": "b288811b-4786-4bd7-97a1-4a02f16c6d07"
-                                        }
-                                    })
-                                        .then(response => {
-                                            if (response.data.resultCode == 0) {
-                                                this.props.follow(item.id)
-                                            }
-                                        })
-                                }}>Follow</button>
-                                : <button onClick={() => {
-                                    Axios.post(`https://social-network.samuraijs.com/api/1.0/users/follow/${item.id}`, null, {
-                                        withCredentials: true,
-                                        headers: {
-                                            "API-KEY": "b288811b-4786-4bd7-97a1-4a02f16c6d07"
-                                        }
-                                    })
-                                        .then(response => {
-                                            if (response.data.resultCode === 0) {
-                                                this.props.unfollow(item.id)
-                                            }
-                                        })
-                                }}>Unfollow</button>}
+                                ? <button disabled={this.props.followingInProgress.some(id => id === item.id)}
+                                    onClick={() => { this.props.unfollow(item.id) }}>Unfollow</button>
+                                : <button disabled={this.props.followingInProgress.some(id => id === item.id)}
+                                    onClick={() => { this.props.follow(item.id) }}>Follow</button>}
                             <div className="user-container__info">
                                 <div>{item.name}</div>
                                 <div>{item.status}</div>
@@ -62,7 +41,8 @@ class Users extends Component {
                                 {/* <div>{item.location.city}</div> */}
                             </div>
                         </div>
-                    )}
+                    )
+                }
             </div>
         )
     }
