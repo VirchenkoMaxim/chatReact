@@ -1,0 +1,25 @@
+.paginator {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    &__prev {
+        margin-right: 10px;
+    }
+    &__next {
+        margin-left: 10px;
+    }
+    &__pages {
+        &_items {
+            border: 1px solid rgb(44, 44, 44);
+            padding: 0 5px;
+            margin: 0 2px;
+        }
+        &_count {
+            padding: 1px 7px;
+            margin: 0 2px;
+            border: 1px solid black;
+            font-weight: bold;
+            font-size: 18px;
+        }
+    }
+}

@@ -15,7 +15,7 @@
 
 .main {
   grid-area: main;
-  background-color: red;
+  background-color: rgb(55, 100, 98);
 }
 
 .nav {

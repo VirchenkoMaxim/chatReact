@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Post from './Post/Post'
 import './MyPosts.scss'
-import { addPostActionCreator, changeNewPostActionCreator } from '../../../redux/profile-reducer'
+import MyPostForm from './MyPostForm'
 
 export class MyPosts extends Component {
     render() {
@@ -9,23 +9,14 @@ export class MyPosts extends Component {
             return <Post key={item.id} message={item.message} like={item.like} />
         })
 
-        let addPost = () => {
-            this.props.addPost()
+        let addPost = (value) => {
+            this.props.addPost(value.newPost)
         }
-        let changePost = (e) => {
-            let text = e.target.value;
-            this.props.changePost(text)
 
-        }
         return (
             <div className="my-posts">
                 <h3 className="my-posts__title">My Posts</h3>
-                <textarea
-                    className="my-posts__area"
-                    onChange={changePost}
-                    value={this.props.profilePage.newPost}
-                />
-                <button onClick={addPost} className="my-posts__btn">Add Post</button>
+                <MyPostForm onSubmit={addPost} />
                 <div className="my-posts__list">
                     {post}
                 </div>

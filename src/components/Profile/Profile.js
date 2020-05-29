@@ -8,7 +8,7 @@ export class Profile extends Component {
 
         return (
             <div className="profile">
-                <ProfileInfo profile={this.props.profile} />
+                <ProfileInfo {...this.props} />
                 <MyPostsContainer />
 
             </div>

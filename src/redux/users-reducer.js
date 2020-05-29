@@ -11,9 +11,9 @@ const TOGGLE_FOLLOWING_IN_PROGRESS = 'TOGGLE_FOLLOWING_IN_PROGRESS'
 
 let initialState = {
     users: [],
-    pageSize: 5,
+    pageSize: 10,
     totalUsersCount: null,
-    curentPage: 1,
+    currentPage: 1,
     isFetching: true,
     followingInProgress: []
 
@@ -48,7 +48,7 @@ let usersPageReducer = (state = initialState, action) => {
             }
         case CURENT_PAGE:
             return {
-                ...state, curentPage: action.size
+                ...state, currentPage: action.size
             }
         case TOTAL_COUNT:
             return {
@@ -81,9 +81,9 @@ export const totalCount = (count) => ({ type: TOTAL_COUNT, count })
 export const toggleIsFetching = (count) => ({ type: TOGGLE_IS_FETCING, count })
 export const toggleFollowingInProgress = (isFetching, id) => ({ type: TOGGLE_FOLLOWING_IN_PROGRESS, isFetching, id })
 
-export const getUsers = (curentPage, pageSize) => (dispatch) => {
+export const requestUsers = (currentPage, pageSize) => (dispatch) => {
     dispatch(toggleIsFetching(true));
-    usersAPI.getUsers(curentPage, pageSize)
+    usersAPI.getUsers(currentPage, pageSize)
         .then(data => {
             dispatch(toggleIsFetching(false))
             dispatch(setUsers(data.items))
@@ -111,7 +111,7 @@ export const follow = (itemId) => (dispatch) => {
 export const unfollow = (userId) => (dispatch) => {
     dispatch(toggleFollowingInProgress(true, userId))
     usersAPI.unfollow(userId).then(response => {
-        if (response.data.resultCode == 0) {
+        if (response.data.resultCode === 0) {
             dispatch(acceptUnfollow(userId))
         }
         dispatch(toggleFollowingInProgress(false, userId))

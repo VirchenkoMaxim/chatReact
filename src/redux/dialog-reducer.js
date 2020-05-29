@@ -1,5 +1,5 @@
 const ADD_MESSAGE = 'ADD-MESSAGE'
-const CHANGE_NEW_MESSAGE = 'CHANGE-NEW-MESSAGE'
+
 
 
 let initialState = {
@@ -18,38 +18,17 @@ let initialState = {
         { id: 5, name: 'Anton' },
         { id: 6, name: 'Valera' },
     ],
-    newMessage: "sdg"
 }
-let copyState;
 let dialogPageReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_MESSAGE:
-            let newMessage = {
-                id: +state.messages.length + 1,
-                message: state.newMessage,
-            }
             return {
                 ...state,
-                messages: [...state.messages, newMessage],
-                newMessage: ''
-
-            }
-        // copyState.newMessage = ""
-
-        case CHANGE_NEW_MESSAGE:
-            return {
-                ...state,
-                newMessage: action.newText
+                messages: [...state.messages, { id: 6, message: action.payload }],
             }
         default:
             return state
     }
 }
-
-
-export const addMessageActionCreator = () => ({ type: ADD_MESSAGE })
-export const changeNewMessageActionCreator = (text) => {
-    return { type: CHANGE_NEW_MESSAGE, newText: text }
-}
-
+export const addMessage = (payload) => ({ type: ADD_MESSAGE, payload })
 export default dialogPageReducer
