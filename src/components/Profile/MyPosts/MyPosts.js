@@ -1,28 +1,35 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Post from './Post/Post'
-import './MyPosts.scss'
+import styles from './MyPosts.module.scss'
 import MyPostForm from './MyPostForm'
+import addEmoji from '../../../assets/img/addEmoji.png'
+import addFile from '../../../assets/img/addFile.png'
+import addPhoto from '../../../assets/img/addPhoto.png'
 
-export class MyPosts extends Component {
-    render() {
-        let post = this.props.profilePage.posts.map((item, index) => {
-            return <Post key={item.id} message={item.message} like={item.like} />
-        })
+const MyPosts = (props) => {
+    let copy = [...props.profilePage.posts];
+    let post = copy.reverse().map((item, index) => {
+        return <Post key={item.id} message={item.message} like={item.like} />
+    })
+    let addPost = (value) => {
+        props.addPost(value.newPost)
 
-        let addPost = (value) => {
-            this.props.addPost(value.newPost)
-        }
-
-        return (
-            <div className="my-posts">
-                <h3 className="my-posts__title">My Posts</h3>
-                <MyPostForm onSubmit={addPost} />
-                <div className="my-posts__list">
-                    {post}
-                </div>
-            </div>
-        )
     }
+
+    return (
+        < div className={styles.myPosts} >
+            <h3 className={styles.myPosts__title}>Posts</h3>
+            <MyPostForm onSubmit={addPost} />
+            <div className={styles.myPosts__helpers}>
+                <img src={addFile} alt="" />
+                < img src={addPhoto} alt="" />
+                < img src={addEmoji} alt="" />
+            </div>
+            <div className={styles.myPosts__list}>
+                {post}
+            </div>
+        </div >
+    )
 }
 
 export default MyPosts

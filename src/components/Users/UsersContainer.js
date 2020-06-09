@@ -17,9 +17,10 @@ class UsersContainerAPI extends Component {
 
     render() {
         console.log("render")
-
+        if (this.props.isFetching) {
+            return <Preloader />
+        }
         return (<>
-            {this.props.isFetching ? <Preloader /> : null}
             <Users users={this.props.users}
                 totalUsersCount={this.props.totalUsersCount}
                 pageSize={this.props.pageSize}

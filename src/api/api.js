@@ -40,10 +40,22 @@ export const profileAPI = {
     getProfile(userId) {
         return instance.get(`profile/` + userId)
     },
+    setProfileData({ aboutMe, lookingForAJobDescription, fullName, ...data }) {
+        return instance.put(`profile`, { aboutMe, lookingForAJobDescription, fullName, ...data })
+    },
     getStatus(userId) {
         return instance.get(`profile/status/${userId}`)
     },
     updateStatus(status) {
         return instance.put(`profile/status`, { status })
+    },
+    savePhoto(file) {
+        const formData = new FormData();
+        formData.append("image", file);
+        return instance.put(`profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
     }
 }

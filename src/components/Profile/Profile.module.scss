@@ -1,0 +1,13 @@
+.profile {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-gap: 1em;
+    &__headImg {
+        width: 100%;
+        height: 220px;
+        grid-column: 1/3;
+    }
+    &__myPosts {
+        grid-column: 2/3;
+    }
+}

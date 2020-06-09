@@ -4,6 +4,7 @@ import './Header.scss'
 export class Header extends Component {
     logout = () => this.props.logout()
     render() {
+
         return (
             <div className="header">
                 <div className="header__login-block">
@@ -12,7 +13,7 @@ export class Header extends Component {
                             <div>{this.props.login}</div>
                             <button onClick={this.logout}>Logout</button>
                         </div>
-                        : <NavLink to="/login">Login</NavLink>
+                        : <NavLink to="/login"><button>Login</button></NavLink>
                     }
                 </div>
             </div>
@@ -21,3 +22,4 @@ export class Header extends Component {
 }
 
 export default Header
+

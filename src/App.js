@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
-import 'react-router';
+import 'react-router-dom';
 import './App.css';
 
 import Footer from './components/Footer/Footer';
@@ -36,6 +36,7 @@ class App extends Component {
             <Route path='/users' render={() =>
               SuspensedComponent(UsersContainer)} />
             <Route path='/login' render={() => <Login />} />
+            <Route path='/' render={() => <div>This Page  was builded by Max Virchenko</div>} />
           </Switch>
         </div>
         <Footer />
@@ -45,7 +46,8 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  initialized: state.app.initialized
+  initialized: state.app.initialized,
+  // autorized: state.auth.isAuth
 })
 
 export default compose(

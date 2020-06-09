@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './Users.scss'
-import userPhoto from '../../assets/img/user.png'
+import defaultUser from '../../assets/img/defaultUser.png'
 import { NavLink } from 'react-router-dom';
 import Paginator from '../common/Paginator/Paginator';
 
@@ -38,7 +38,7 @@ class Users extends Component {
                     <div key={item.id} className="user-container">
                         <NavLink to={'/profile/' + item.id}>
                             <img className="user-container__img" src={
-                                item.photos.small != null ? item.photos.small : userPhoto
+                                item.photos.small != null ? item.photos.small : defaultUser
                             } alt="" />
                         </NavLink>
                         {item.followed

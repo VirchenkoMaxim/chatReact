@@ -1,52 +1,43 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 
-export class ProfileStatus extends Component {
-    state = {
-        editMode: false,
-        status: this.props.status
-    }
-    statusChange = (e) => {
-        this.setState({
-            status: e.target.value
 
-        })
-    }
+const ProfileStatus = (props) => {
+    let [editMode, setEditMode] = useState(false);
+    let [status, setStatus] = useState(props.status);
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.status !== this.props.status) {
-            this.setState({ status: this.props.status })
-        }
-    }
-    activateEditMode = () => {
-        this.setState({
-            editMode: true
-        })
-    }
-    deactivateEditMode = () => {
-        this.setState({
-            editMode: false
-        })
+    useEffect(() => {
+        setStatus(props.status);
+    }, [props.status]);
 
-        this.props.updateProfileStatus(this.state.status)
+    const statusChange = (e) => {
+        setStatus(e.target.value)
     }
-    render() {
-        return (
-            <>
-                {!this.state.editMode ?
-                    <div>
-                        <span onClick={this.activateEditMode} >{this.props.status || 'no status'}</span>
-                    </div> :
-                    <div>
-                        <textarea
-                            onChange={this.statusChange}
-                            autoFocus={true} onBlur={this.deactivateEditMode} value={this.state.status} />
-                    </div>
+    const activateEditMode = () => {
+        setEditMode(true)
 
-                }
-
-            </>
-        )
     }
+    const deactivateEditMode = () => {
+        setEditMode(false)
+        props.updateProfileStatus(status)
+    }
+    return (
+        <>
+            {!editMode ?
+                <div>
+                    <span onClick={activateEditMode} >{props.status || 'no status'}</span>
+                </div> :
+                <div>
+                    <textarea
+                        onChange={statusChange}
+                        autoFocus={true}
+                        onBlur={deactivateEditMode}
+                        value={status} />
+                </div>
+
+            }
+
+        </>
+    )
 }
 
 export default ProfileStatus

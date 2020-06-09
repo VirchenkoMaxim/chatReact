@@ -1,11 +1,14 @@
 .app {
+  width: 70%;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: 20% 1fr 15%;
-  grid-template-rows: 100px 1fr 100px;
+  grid-template-columns: 20% 1fr;
+  grid-template-rows: 80px 1fr 100px;
   grid-template-areas:
-    "header header header"
-    "nav main ."
-    "footer footer footer";
+    "header header "
+    "nav main "
+    "footer footer ";
+  grid-gap: 1.5em;
 }
 
 .header {
@@ -15,7 +18,6 @@
 
 .main {
   grid-area: main;
-  background-color: rgb(55, 100, 98);
 }
 
 .nav {

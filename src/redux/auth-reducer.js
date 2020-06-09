@@ -40,23 +40,23 @@ export const getUserData = () => (dispatch) => {
     })
 
 }
-export const login = (email, password, rememberMe) => (dispath) => {
+export const login = (email, password, rememberMe) => (dispatch) => {
     authAPI.login(email, password, rememberMe)
         .then(response => {
             if (response.data.resultCode === 0) {
-                dispath(getUserData())
+                dispatch(getUserData())
             }
             else {
                 let messages = response.data.messages.length > 0 ? response.data.messages[0] : "Some Error"
-                dispath(stopSubmit('login', { _error: messages }))
+                dispatch(stopSubmit('login', { _error: messages }))
             }
         })
 }
-export const logout = () => (dispath) => {
+export const logout = () => (dispatch) => {
     authAPI.logout()
         .then(response => {
             if (response.data.resultCode === 0) {
-                dispath(setUserData(null, null, null, false))
+                dispatch(setUserData(null, null, null, false))
             }
         })
 }
