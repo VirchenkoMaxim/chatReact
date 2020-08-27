@@ -11,9 +11,9 @@ export class Dialogs extends Component {
         }
         return (
             <div className="dialogs">
-                <DialogsItem dialogs={this.props.dialogsPage.dialogs} />
+                <DialogsItem dialogs={this.props.dialogs} />
                 <div>
-                    <Message messages={this.props.dialogsPage.messages} />
+                    <Message messages={this.props.messages} />
                     <DialogsForm onSubmit={addMessage} />
                 </div>
 

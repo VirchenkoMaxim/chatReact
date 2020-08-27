@@ -7,7 +7,7 @@ import addFile from '../../../assets/img/addFile.png'
 import addPhoto from '../../../assets/img/addPhoto.png'
 
 const MyPosts = (props) => {
-    let copy = [...props.profilePage.posts];
+    let copy = [...props.posts];
     let post = copy.reverse().map((item, index) => {
         return <Post key={item.id} message={item.message} like={item.like} />
     })

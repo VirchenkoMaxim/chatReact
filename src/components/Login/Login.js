@@ -1,46 +1,33 @@
 import React, { Component } from 'react'
-import LoginForm from './LoginForm'
-import { connect } from 'react-redux'
-import { login } from '../../redux/auth-reducer'
+import { LoginForm } from './LoginForm'
+import { useSelector, useDispatch } from 'react-redux'
 import styles from './LoginForm.module.scss'
 import { Redirect, withRouter } from 'react-router-dom'
 import { compose } from 'redux'
+import { authActions } from '../../redux/auth'
 
 
 
 
-export class Login extends Component {
+const Login = props => {
+    const isAuth = useSelector(state => state.auth.isAuth)
+    const dispatch = useDispatch()
 
-    render() {
-        let onSubmit = (formData) => {
-            this.props.login(formData.email, formData.password, formData.rememberMe)
-        }
-        if (this.props.isAuth) {
-            return <Redirect to="/profile" />
-        }
-        let Click = (e) => {
-            if (e.target.id === "redirectFromLogin") {
-                this.props.history.push("/users")
-            }
-
-        }
-        return (
-            <div onClick={Click} id="redirectFromLogin" className={styles.body}>
-                <LoginForm onSubmit={onSubmit} />
-            </div>
-
-        )
+    let onSubmit = (formData) => {
+        dispatch(authActions.login(formData.email, formData.password, formData.rememberMe))
     }
-}
-
-let mapStateToProps = (state) => {
-    return {
-        isAuth: state.auth.isAuth
-
+    if (isAuth) {
+        return <Redirect to="/profile" />
     }
+
+    return (
+        <div className={styles.login}>
+            <LoginForm />
+        </div>
+
+    )
 }
 
 export default compose(
-    connect(mapStateToProps, { login }),
     withRouter,
 )(Login)

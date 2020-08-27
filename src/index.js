@@ -1,5 +1,5 @@
 import * as serviceWorker from './serviceWorker';
-import store from './redux/redux-store'
+import store from './redux'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -8,11 +8,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
 
-
-
-
 ReactDOM.render(
-
     <Provider store={store}>
         <BrowserRouter>
             <App
@@ -22,13 +18,6 @@ ReactDOM.render(
     ,
     document.getElementById('root')
 );
-
-
-// renderTree(store.getState());
-// store.subscribe(() => {
-//     let state = store.getState()
-//     renderTree(state)
-// });
 
 
 serviceWorker.unregister();

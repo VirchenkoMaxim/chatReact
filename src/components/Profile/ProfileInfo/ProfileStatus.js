@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux';
+import { profileActions } from '../../../redux/profile';
 
 
 const ProfileStatus = (props) => {
+    const dispatch = useDispatch();
     let [editMode, setEditMode] = useState(false);
     let [status, setStatus] = useState(props.status);
 
@@ -18,7 +21,7 @@ const ProfileStatus = (props) => {
     }
     const deactivateEditMode = () => {
         setEditMode(false)
-        props.updateProfileStatus(status)
+        dispatch(profileActions.updateProfileStatus(status))
     }
     return (
         <>

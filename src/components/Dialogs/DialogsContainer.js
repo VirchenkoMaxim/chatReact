@@ -1,23 +1,22 @@
 import React from 'react'
 import './Dialogs.scss'
-import { addMessage } from '../../redux/dialog-reducer'
-import Dialogs from './Dialogs'
+import { addMessage } from '../../redux/dialog/actions'
 import { connect } from 'react-redux'
-
-import { withAuthRedirect } from '../../hok/withAuthRedirect'
 import { compose } from 'redux'
+import { dialogSelectors } from '../../redux/dialog'
+import Dialogs from './Dialogs'
 
 
 let mapStateToProps = (state) => {
     return {
-        dialogsPage: state.dialogsPage,
+        dialogs: dialogSelectors.dialogs(state),
+        messages: dialogSelectors.mesages(state)
     }
 }
 
 
 export default compose(
     connect(mapStateToProps, { addMessage }),
-    withAuthRedirect
 )(Dialogs)
 
 
