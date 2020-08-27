@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, HTMLAttributes, FC } from 'react'
 import { useDispatch } from 'react-redux';
 import { profileActions } from '../../../redux/profile';
 
+interface MyProps {
+    status: string
+}
+type Props = MyProps & HTMLAttributes<HTMLDivElement>
 
-const ProfileStatus = (props) => {
+export const Status:FC<Props> = (props) => {
     const dispatch = useDispatch();
     let [editMode, setEditMode] = useState(false);
     let [status, setStatus] = useState(props.status);
@@ -12,7 +16,7 @@ const ProfileStatus = (props) => {
         setStatus(props.status);
     }, [props.status]);
 
-    const statusChange = (e) => {
+    const statusChange = (e:any) => {
         setStatus(e.target.value)
     }
     const activateEditMode = () => {
@@ -43,4 +47,3 @@ const ProfileStatus = (props) => {
     )
 }
 
-export default ProfileStatus

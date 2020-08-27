@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import './Users.scss'
 import defaultUser from '../../assets/img/defaultUser.png'
 import { NavLink } from 'react-router-dom';
-import { Paginator } from '../common/Paginator/Paginator';
+import { Paginator } from '../common/Paginator';
 import { usersSelectors, usersActions } from '../../redux/users';
 import { useDispatch, useSelector } from 'react-redux'
 import Preloader from '../common/Preloader';

@@ -1,35 +1,28 @@
 import React from 'react'
-import Post from './Post/Post'
+import {Posts} from './Posts'
 import styles from './MyPosts.module.scss'
-import MyPostForm from './MyPostForm'
+import {Form} from './Form'
 import addEmoji from '../../../assets/img/addEmoji.png'
 import addFile from '../../../assets/img/addFile.png'
 import addPhoto from '../../../assets/img/addPhoto.png'
+import { useDispatch, useSelector } from 'react-redux'
+import {RootState} from '../../../redux'
+import { profileSelectors, profileActions } from '../../../redux/profile'
 
-const MyPosts = (props) => {
-    let copy = [...props.posts];
-    let post = copy.reverse().map((item, index) => {
-        return <Post key={item.id} message={item.message} like={item.like} />
-    })
-    let addPost = (value) => {
-        props.addPost(value.newPost)
-
-    }
-
+export const MyPosts = ( ) => {
+   
+   
     return (
         < div className={styles.myPosts} >
             <h3 className={styles.myPosts__title}>Posts</h3>
-            <MyPostForm onSubmit={addPost} />
+            {/* <Form onSubmit={addPost} /> */}
             <div className={styles.myPosts__helpers}>
                 <img src={addFile} alt="" />
                 < img src={addPhoto} alt="" />
                 < img src={addEmoji} alt="" />
             </div>
-            <div className={styles.myPosts__list}>
-                {post}
-            </div>
+            <Posts/>
         </div >
     )
 }
 
-export default MyPosts

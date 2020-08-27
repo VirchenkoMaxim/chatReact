@@ -1,21 +1,21 @@
 import React, { useEffect, FC } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import 'react-router-dom';
-import './App.css';
-import Footer from './components/Footer/Footer';
+import '../../styles/App.css';
+import Footer from '../Footer';
 
-import Profile from './components/Profile';
-import Header from './components/Header/Header';
-import Login from './components/Login/Login';
-import Preloader from './components/common/Preloader';
+import Profile from '../Profile';
+import Header from '../Header';
+import Login from '../Login';
+import Preloader from '../common/Preloader';
 import { useSelector, useDispatch } from 'react-redux';
-import { SuspensedComponent } from './hok/SuspensedComponent';
+import { SuspensedComponent } from '../../hok/SuspensedComponent';
 import { Grid } from '@material-ui/core';
-import { appSelectors, appActions } from './redux/app';
-import { RootState } from './redux';
-import Nav from './components/Nav/Nav';
-const Users = React.lazy(() => import('./components/Users/Users'));
-const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
+import { appSelectors, appActions } from '../../redux/app';
+import { RootState } from '../../redux';
+import Nav from '../Nav';
+const Users = React.lazy(() => import('../Users'));
+const DialogsContainer = React.lazy(() => import('../Dialogs/DialogsContainer'));
 
 export const App: FC<any> = () => {
   const dispatch = useDispatch();

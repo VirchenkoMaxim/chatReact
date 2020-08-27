@@ -1,13 +1,13 @@
-import { RootState } from '../../redux';
+import { RootState } from '../../redux'
 import React, { useEffect } from 'react'
-import styles from './Profile.module.scss'
+import styles from './styles/Profile.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { profileActions } from '../../redux/profile'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { profileSelectors } from '../../redux/profile'
 
-import MyPostsContainer from './MyPosts/MyPostsContainer'
+import {MyPosts} from './MyPosts'
 
 import { ProfileImg } from './ProfileImg'
 import headImg from "../../assets/img/profile-img.jpg"
@@ -32,7 +32,6 @@ export const Profile = (props: Props) => {
     if (!autorizedUserId) {
         props.history.push("/login")
     }
-
     useEffect(() => {
         dispatch(profileActions.getProfileUser(userId))
         dispatch(profileActions.getProfileStatus(userId))
@@ -52,12 +51,12 @@ export const Profile = (props: Props) => {
                 status={status}
                 isError={isError} />
             <div></div>
-            <div className={styles.profile__myPosts}><MyPostsContainer
+            {/* <div className={styles.profile__myPosts}><MyPosts
                 isOwner={!props.match.params.userId}
                 profile={profile}
                 status={status}
                 isError={isError}
-            /></div>
+            /></div> */}
         </div>
     )
 }

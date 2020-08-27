@@ -1,13 +1,11 @@
 import React from 'react'
 import { reduxForm, Field } from 'redux-form'
-import { Input } from '../../common/FormsControle/FormsControle'
-import styles from './ProfileInfo.module.scss'
-import ProfileStatus from './ProfileStatus'
+import { Input } from '../../common/FormsControle'
+import styles from '../styles/ProfileInfo.module.scss'
+import ProfileStatus from './Status'
 import { Component } from 'react'
 
-class ProfileInfoForm extends Component {
-
-    render() {
+export const ProfileForm = () => {
         return (
             <form onSubmit={this.props.handleSubmit}>
                 <button className={styles.submitBtn} >Add Changes</button>
@@ -55,6 +53,5 @@ class ProfileInfoForm extends Component {
             </form>
         )
     }
-}
-export default reduxForm({ form: 'profileInfo' })(ProfileInfoForm)
+
 

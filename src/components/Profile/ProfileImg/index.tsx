@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent, } from 'react'
 import defaultUser from '../../../assets/img/defaultUser.png'
-import styles from './ProfileImg.module.scss'
+import styles from '../styles/ProfileImg.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { profileActions, profileSelectors } from '../../../redux/profile'
 import { RootState } from '../../../redux'
