@@ -1,12 +1,4 @@
 .myPosts {
-    &__area {
-        display: block;
-        width: 100%;
-        height: 46px;
-        margin: 10px 0;
-    }
-    &__title {
-    }
     &__helpers {
         height: 20px;
         img {
@@ -14,6 +6,17 @@
             height: 25px;
             margin-right: 7px;
         }
+    }  
+}
+.form{
+    &__area {
+        display: block;
+        box-sizing: border-box;
+        resize: vertical;
+        width: 100%;
+        min-height: 46px;
+        max-height: 100px;
+        margin: 10px 0;  
     }
     &__btn {
         float: right;
