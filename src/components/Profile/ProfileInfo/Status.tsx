@@ -1,7 +1,7 @@
 import React, { useState, useEffect, HTMLAttributes, FC } from 'react'
 import { useDispatch } from 'react-redux';
 import { profileActions } from '../../../redux/profile';
-
+import styles from '../styles/ProfileInfo.module.scss'
 type MyProps = {
     status: string
     updateProfileStatus: boolean

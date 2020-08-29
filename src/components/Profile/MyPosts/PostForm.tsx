@@ -24,12 +24,12 @@ export const PostForm = () => {
         >
             <Form>
                 <Field
-                    className={styles.form__area}
+                    className={styles.postForm__area}
                     name="post"
                     type="text"
                     component="textarea"
                 />
-                <button type="submit" className={styles.form__btn} >Add</button>
+                <button type="submit" className={styles.postForm__btn} >Add</button>
             </Form>
         </Formik>
     )

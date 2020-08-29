@@ -9,14 +9,19 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexWrap: 'wrap',
     },
-    fullName: {
-        width: '80%',
-    },
     textField: {
+
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
         width: '25ch',
     },
+    fullName: {
+        width: '70%',
+        marginBottom: '10px',
+    },
+    lookingJob: {
+    }
+
 }));
 
 type InitialValues = {
@@ -40,51 +45,60 @@ export const ProfileForm: FC<Props> = ({ status, updateProfileStatus }) => {
     }
 
     return (
-        <Formik
-            initialValues={initialValues}
-            onSubmit={(values) => {
-                alert(JSON.stringify(values, null, 2));
+        <div className={styles.profileForm}>
+            <Formik
+                initialValues={initialValues}
+                onSubmit={(values) => {
+                    alert(JSON.stringify(values, null, 2));
 
-            }}
-        >
-            <Form >
-                <button className={styles.profileForm__btn} >Add Changes</button>
-                <Field
-                    className={classes.fullName}
-                    name="fullName"
-                    as={TextField}
-                    autoComplete="off"
-                    autocorrect="off"
-                    autocapitalize="none"
-                    fullWidth
-                />
-                <Status
-                    status={status}
-                    updateProfileStatus={updateProfileStatus}
-                />
-                <Field
-                    name="lookingForAJob"
-                    render={({ field }: any) => (
-                        <FormControlLabel
-                            control={<Checkbox  {...field} size="small" />}
-                            label="lookingForAJob"
+                }}
+            >
+                <Form >
+                    <button className={styles.profileForm__btn} >Add Changes</button>
+                    <Field
+                        className={classes.fullName}
+                        name="fullName"
+                        as={TextField}
+                        autoComplete="off"
+                        autocorrect="off"
+                        autocapitalize="none"
+                        fullWidth
+                    />
+                    <Status
+                        status={status}
+                        updateProfileStatus={updateProfileStatus}
+                    />
+                    <div className={styles.profileForm__lookingJob}>
+                        <Field
+                            name="lookingForAJob"
+                            render={({ field }: any) => (
+                                <FormControlLabel
+                                    className={classes.lookingJob}
+                                    control={<Checkbox  {...field} size="small" />}
+                                    label="Looking For Job"
+                                />
+                            )} />
+                    </div>
+                    <div className={styles.profileForm__aboutMe}>
+                        <label htmlFor="firstName">About Me</label>
+                        <Field
+                            type="text"
+                            name="aboutMe"
+                            component="textarea"
                         />
-                    )} />
-                <label htmlFor="firstName">About Me</label>
-                <Field
-                    type="text"
-                    name="aboutMe"
-                    component="textarea"
+                    </div>
+                    <div className={styles.profileForm__mySkills}>
+                        <label htmlFor="firstName">My Skills</label>
+                        <Field
+                            type="text"
+                            name="lookingForAJobDescription"
+                            component="textarea"
+                        />
+                    </div>
 
-                />
-                <label htmlFor="firstName">My Skills</label>
-                <Field
-                    type="text"
-                    name="lookingForAJobDescription"
-                    component="textarea"
-                />
-            </Form>
-        </Formik>
+                </Form>
+            </Formik>
+        </div>
     );
 };
 
