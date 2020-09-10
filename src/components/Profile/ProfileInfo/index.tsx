@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import {ProfileForm} from './ProfileForm'
-import {Status} from './Status'
+import { ProfileForm } from './ProfileForm'
+import { Status } from './Status'
 import styles from '../styles/ProfileInfo.module.scss'
 import { useDispatch } from 'react-redux'
 import { profileActions } from '../../../redux/profile'
@@ -24,8 +24,9 @@ export const ProfileInfo = (props: any) => {
                 ? <div>
                     <button onClick={activateEditMode} className={styles.submitBtn}>Edit</button>
                     <div className={styles.fullName}>{props.profile.fullName}</div>
-                    <Status className={styles.status}
+                    <Status
                         status={props.status}
+                        updateProfileStatus={props.updateProfileStatus}
                     />
                     <div className={styles.info} >
                         <div>Looking for job:</div>
@@ -43,14 +44,11 @@ export const ProfileInfo = (props: any) => {
                     </div>
                 </div>
                 :
-                <div>dd</div>
-                //  <ProfileForm
-                //     initialValues={props.profile}
-                //     onSubmit={onSubmit}
-                //     status={props.status}
-                //     updateProfileStatus={props.updateProfileStatus}
-                //     profile={props.profile}
-                // />
+                <ProfileForm
+                    status={props.status}
+                    updateProfileStatus={props.updateProfileStatus}
+                // profile={props.profile}
+                />
             }
         </div>
     )

@@ -1,23 +1,53 @@
-.myPosts {
+.helpers {
+    height: 20px;
+
+    img {
+        width: 25px;
+        height: 25px;
+        margin-right: 7px;
+    }
+}
+
+.postForm {
     &__area {
         display: block;
+        box-sizing: border-box;
+        resize: vertical;
         width: 100%;
-        height: 46px;
+        min-height: 46px;
+        max-height: 100px;
         margin: 10px 0;
     }
-    &__title {
-    }
-    &__helpers {
-        height: 20px;
-        img {
-            width: 25px;
-            height: 25px;
-            margin-right: 7px;
-        }
-    }
+
     &__btn {
         float: right;
         padding: 2px 4px;
         min-width: 80px;
+    }
+}
+
+.posts {
+    margin: 15px;
+    display: grid;
+    grid-template-columns: 35px 1fr;
+    white-space: pre-wrap;
+
+    &__img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+    }
+
+    &__message {
+        box-sizing: border-box;
+        max-width: 100%;
+        display: flex;
+        align-items: center;
+        margin: 0 15px;
+    }
+
+    &__like {
+        display: block;
+        grid-column: 1/3;
     }
 }

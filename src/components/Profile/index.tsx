@@ -50,13 +50,9 @@ export const Profile = (props: Props) => {
                 profile={profile}
                 status={status}
                 isError={isError} />
-            <div></div>
-            {/* <div className={styles.profile__myPosts}><MyPosts
-                isOwner={!props.match.params.userId}
-                profile={profile}
-                status={status}
-                isError={isError}
-            /></div> */}
+            <div className={styles.profile__myPosts}>
+                <MyPosts/>
+            </div>
         </div>
     )
 }
