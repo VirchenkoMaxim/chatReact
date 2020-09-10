@@ -1,30 +1,34 @@
 .login {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .form {
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    display: flex;
-    flex-direction: column;
-    max-width: 400px;
-    min-width: 360px;
-    padding: 30px;
-    box-shadow: 0 0 10px rgba($color: #000000, $alpha: 1);
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  min-width: 360px;
+  padding: 30px;
+  box-shadow: 0 0 10px rgba($color: #000000, $alpha: 1);
 }
 .remember {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    a {
-        line-height: 0.9em;
-        font-size: 0.9em;
-        align-self: center;
-    }
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  a {
+    line-height: 0.9em;
+    font-size: 0.9em;
+    align-self: center;
+  }
 }
 .input {
-    background: none;
+  background: none;
+}
+.form_err {
+  border-color: red;
+  color: red;
 }
