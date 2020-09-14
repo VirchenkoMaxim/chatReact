@@ -39,7 +39,7 @@ const Header = () => {
         setAnchorEl(event.currentTarget);
     };
     const setLogout = () => {
-        dispatch(authActions.logout());
+        dispatch(authActions.LogoutRequest());
 
     }
     return (

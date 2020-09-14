@@ -17,13 +17,22 @@ let rootReducer = combineReducers({
   form: formReducer,
 });
 const sagaMiddleware = createSagaMiddleware();
+
+const middlewares = [
+  sagaMiddleware,
+  thunkMiddleware
+
+]
 // @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 let store = createStore(
   rootReducer,
-  composeEnhancers(applyMiddleware(sagaMiddleware))
+  composeEnhancers(applyMiddleware(sagaMiddleware,
+    thunkMiddleware))
 );
 
-export type RootState = ReturnType<typeof rootReducer>;
 sagaMiddleware.run(rootSaga);
+export type RootState = ReturnType<typeof rootReducer>;
+
+
 export default store;

@@ -5,26 +5,20 @@ import styles from './LoginForm.module.scss'
 import { Redirect, withRouter } from 'react-router-dom'
 import { compose } from 'redux'
 import { authActions } from '../../redux/auth'
+import { RootState } from '../../redux'
 
 
 
 
-const Login = props => {
-    const isAuth = useSelector(state => state.auth.isAuth)
-    const dispatch = useDispatch()
-
-    let onSubmit = (formData) => {
-        dispatch(authActions.login(formData.email, formData.password, formData.rememberMe))
-    }
+const Login = (props) => {
+    const isAuth = useSelector((state) => state.auth.isAuth)
     if (isAuth) {
         return <Redirect to="/profile" />
     }
-
     return (
-        <div className={styles.login}>
+        <div className={styles.login} >
             <LoginForm />
         </div>
-
     )
 }
 

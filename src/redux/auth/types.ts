@@ -1,7 +1,10 @@
-export const SET_USER_DATA = "auth/SET_USER_DATA";
-export const SET_USER_DATA_LOADING = "auth/SET_USER_DATA_LOADING";
+export const LOGIN_REQUEST = "auth/LOGIN_REQUEST";
+export const LOGOUT_REQUEST = "auth/LOGOUT_REQUEST";
+export const USER_DATA_LOADING = "auth/USER_DATA_LOADING";
 export const SET_USER_DATA_SUCCESS = "auth/SET_USER_DATA_SUCCESS";
-export const SET_USER_DATA_FAILED = "auth/SET_USER_DATA_FAILED";
+export const USER_DATA_FAILED = "auth/USER_DATA_FAILED";
+
+
 
 //auth api types
 export type authMeType = {
@@ -22,21 +25,27 @@ export type LoginLogoutType = {
   };
 };
 
-// actions types
-export type setUserDataType = {
-  type: typeof SET_USER_DATA;
-  payload: {
-    userId: string | undefined;
-    login: string | null;
-    email: string | null;
-    isAuth?: boolean;
-  };
-};
+// actions 
+export type loginData = {
+  email: string | null
+  password: string | null
+  rememberMe?: boolean
+}
 
-export type setUserDataLoading = {
-  type: typeof SET_USER_DATA_LOADING;
+
+export type LoginRequest = {
+  type: typeof LOGIN_REQUEST
+  payload: loginData
+}
+export type LogoutRequest = {
+  type: typeof LOGOUT_REQUEST
+}
+
+export type UserDataLoading = {
+  type: typeof USER_DATA_LOADING,
+  payload?: boolean
 };
-export type setUserDataSuccess = {
+export type SetUserDataSuccess = {
   type: typeof SET_USER_DATA_SUCCESS;
   payload: {
     userId: string | undefined;
@@ -45,13 +54,15 @@ export type setUserDataSuccess = {
     isAuth?: boolean;
   };
 };
-export type setUserDataFailed = {
-  type: typeof SET_USER_DATA_FAILED;
+export type UserDataFailed = {
+  type: typeof USER_DATA_FAILED;
   payload: {
     message: string;
   };
 };
 export type AuthActionsTypes =
-  | setUserDataSuccess
-  | setUserDataFailed
-  | setUserDataLoading;
+  | SetUserDataSuccess
+  | UserDataFailed
+  | UserDataLoading
+  | LoginRequest
+  | LogoutRequest

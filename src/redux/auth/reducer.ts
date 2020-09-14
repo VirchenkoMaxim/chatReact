@@ -6,18 +6,30 @@ let initialState = {
   login: null as string | null,
   email: null as string | null,
   isAuth: false,
-  error: null as string | null,
+  errorMessage: null as string | null,
 };
 type InitialStateType = typeof initialState;
 export let reducer = (
   state: InitialStateType = initialState,
-  action: types.setUserDataType
+  action: types.AuthActionsTypes
 ) => {
   switch (action.type) {
+    case types.USER_DATA_LOADING:
+      return {
+        ...state,
+        loading: true
+      };
+    case types.USER_DATA_FAILED:
+      return {
+        ...state,
+        loading: false,
+        errorMessage: action.payload.message,
+      };
     case types.SET_USER_DATA_SUCCESS:
       return {
         ...state,
         ...action.payload,
+        loading: false
       };
     default:
       return state;

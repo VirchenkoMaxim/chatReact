@@ -9,7 +9,7 @@ import {
   FormControlLabel,
   TextField,
 } from "@material-ui/core";
-import { authActions } from "../../redux/auth";
+import { authActions, authTypes } from "../../redux/auth";
 import { RootState } from "../../redux";
 import { ThunkDispatch } from "redux-thunk";
 import { AnyAction } from "redux";
@@ -49,7 +49,7 @@ interface MyFieldProps extends FieldProps {
   value: boolean;
 }
 
-export const LoginForm: React.SFC<FormikProps<InitialValues>> = (props) => {
+export const LoginForm: React.SFC<FormikProps<InitialValues>> = (props: any) => {
   const dispatch: AppDispatch = useDispatch();
   const classes = useStyles();
   const initialValues: InitialValues = {
@@ -68,9 +68,8 @@ export const LoginForm: React.SFC<FormikProps<InitialValues>> = (props) => {
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={(values) => {
-        console.log(values);
-        dispatch(authActions.login(values.email, values.password, false));
+      onSubmit={(values: authTypes.loginData): void => {
+        dispatch(authActions.LoginRequest(values));
       }}
     >
       {({ errors, touched }) => (
